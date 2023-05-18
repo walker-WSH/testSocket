@@ -13,8 +13,8 @@
 
 #pragma comment (lib, "Ws2_32.lib") 
 
-#define SERVER_HOST "127.0.0.1"
-#define SERVER_PORT 10096
+#define SERVER_HOST "0.0.0.0"
+#define SERVER_PORT 8080
 
 
 #define DEFAULT_BUFLEN      512 
@@ -43,7 +43,7 @@ int __cdecl main(void)
 
         sockaddr_in service;
         service.sin_family = AF_INET;
-        service.sin_addr.s_addr = inet_addr(SERVER_HOST);
+	service.sin_addr.s_addr = inet_addr(SERVER_HOST);
 
         int port = SERVER_PORT;
         while (1)
@@ -72,6 +72,15 @@ int __cdecl main(void)
                 WSACleanup();
                 return 1;
         }
+
+        sockaddr_in localAddr;
+	int localAddrLen = sizeof(localAddr);
+	getsockname(ListenSocket, (sockaddr *)&localAddr, &localAddrLen);
+
+	char ipStr[INET_ADDRSTRLEN];
+	inet_ntop(AF_INET, &localAddr.sin_addr, ipStr, INET_ADDRSTRLEN);
+
+        printf_s("%s\n", ipStr);
 
         // Accept a client socket
         ClientSocket = accept(ListenSocket, NULL, NULL);

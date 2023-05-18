@@ -10,8 +10,10 @@
 #pragma comment (lib, "Mswsock.lib")
 #pragma comment (lib, "AdvApi32.lib")
 
+//#define SERVER_HOST "127.0.0.1"
 #define SERVER_HOST "39.105.145.19"
-#define SERVER_PORT 10096
+//#define SERVER_HOST "116.204.78.5"
+#define SERVER_PORT 8080
 
 #define DEFAULT_BUFLEN      512
 
@@ -43,7 +45,7 @@ int __cdecl main(int argc, char** argv)
         iResult = connect(ConnectSocket, (SOCKADDR*)&service, sizeof(service));
         if (iResult == SOCKET_ERROR)
         {
-                printf("connect!\n");
+                printf("failed to connect!\n");
                 closesocket(ConnectSocket);
                 WSACleanup();
                 return 1;
