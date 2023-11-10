@@ -10,8 +10,8 @@
 #pragma comment (lib, "Mswsock.lib")
 #pragma comment (lib, "AdvApi32.lib")
 
-//#define SERVER_HOST "127.0.0.1"
-#define SERVER_HOST "39.105.145.19"
+#define SERVER_HOST "127.0.0.1"
+//#define SERVER_HOST "39.105.145.19"
 //#define SERVER_HOST "116.204.78.5"
 #define SERVER_PORT 8080
 
